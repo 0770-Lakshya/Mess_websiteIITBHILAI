@@ -375,7 +375,7 @@ h3 { font-weight: 600; }
   background: var(--card);
 }
 
----------- theme toggle ---------- */
+/* ---------- theme toggle ---------- */
 .theme-toggle {
   width: 40px;
   height: 40px;
@@ -412,4 +412,4 @@ h3 { font-weight: 600; }
 }
 /* .mb-14{
   background : linear-gradient(160deg, #fffdf2 0%, #fff7cf 55%, #e4f6d8 100%);
-}
+} */
