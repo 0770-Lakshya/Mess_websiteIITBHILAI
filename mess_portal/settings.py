@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config("DJANGO_SECRET_KEY", default="dev-only-not-production")
 DEBUG = config("DEBUG", default=False, cast=bool)
-ALLOWED_HOSTS = ['mess-website-production.up.railway.app',"localhost"]
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
