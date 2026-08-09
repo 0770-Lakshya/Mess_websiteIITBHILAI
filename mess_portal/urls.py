@@ -5,7 +5,6 @@ from mess_portal import views
 
 admin.site.site_header="Mess Admin Portal"
 admin.site.site_title="Mess Admin Portal"
-admin.site.site_url="Mess Admin Portal"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
