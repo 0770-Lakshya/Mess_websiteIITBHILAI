@@ -19,14 +19,6 @@
         };
     </script>
     <link rel="stylesheet" href="{% static 'css/polaris.css' %}">
-    <script>
-        (function () {
-            var saved = localStorage.getItem('polaris-theme');
-            if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            }
-        })();
-    </script>
 </head>
 <body>
 
@@ -162,19 +154,5 @@
     <footer class="polaris-footer py-6 text-center">
         IIT Bhilai Mess Committee • Pakadarpanalaya Portal
     </footer>
-
-    <script>
-        var toggle = document.getElementById('themeToggle');
-        var root = document.documentElement;
-        function applyIcon() {
-            toggle.textContent = root.classList.contains('dark') ? '☀️' : '🌙';
-        }
-        applyIcon();
-        toggle.addEventListener('click', function () {
-            root.classList.toggle('dark');
-            localStorage.setItem('polaris-theme', root.classList.contains('dark') ? 'dark' : 'light');
-            applyIcon();
-        });
-    </script>
 </body>
 </html>

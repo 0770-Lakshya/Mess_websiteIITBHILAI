@@ -29,7 +29,7 @@ services:
       - redis
     command: >
       bash -c "
-        cd /app/iitbhilai_mess &&
+        cd /app &&
         python manage.py migrate &&
         python manage.py runserver 0.0.0.0:8000"
     restart: always

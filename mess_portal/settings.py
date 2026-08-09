@@ -2,12 +2,13 @@
 Django settings for mess_portal project.
 """
 from pathlib import Path
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-iitbhilai-mess-portal-dev-key'
-DEBUG = False
-ALLOWED_HOSTS = []
+SECRET_KEY = config("DJANGO_SECRET_KEY", default="dev-only-not-production")
+DEBUG = config("DEBUG", default=False, cast=bool)
+ALLOWED_HOSTS = ['mess-website-production.up.railway.app',"localhost"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -20,6 +21,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -58,7 +61,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 
 from decouple import config

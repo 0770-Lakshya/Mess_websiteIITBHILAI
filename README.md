@@ -1,0 +1,1 @@
+Here is my first FUll stack web app using Caching via Django-Redis and also i learned abour Docker and its command.
