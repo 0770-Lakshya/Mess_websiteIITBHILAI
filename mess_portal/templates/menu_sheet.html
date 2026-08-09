@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %} Weekly Menu | Pakadarpanalaya{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+    <div class="text-center">
+        <h2 class="font-display text-3xl font-extrabold">Weekly Menu</h2>
+        <p class="polaris-muted text-sm mt-1">Official grid from the IIT Bhilai mess Google Sheet.</p>
+    </div>
+
+    {% if menu_error %}
+    <div class="polaris-card p-6 text-left" style="border-color:rgba(212,24,61,.4)">
+        <p class="text-sm polaris-muted">{{ menu_error }}</p>
+    </div>
+    {% endif %}
+
+    {% if weeks %}
+    <!-- Week selector -->
+    <div class="flex gap-2 justify-center" id="weekTabs">
+        {% for week in weeks %}
+        <button data-week="{{ forloop.counter0 }}" class="week-tab px-4 py-2 text-sm font-semibold rounded-lg {% if forloop.counter0 == 0 %}week-active{% endif %}" style="{% if forloop.counter0 == 0 %}background:var(--primary);color:var(--primary-foreground){% else %}background:var(--secondary);color:var(--secondary-foreground){% endif %}">
+            {{ week.label }}
+        </button>
+        {% endfor %}
+    </div>
+
+    {% for week in weeks %}
+    <div class="week-panel {% if forloop.counter0 != 0 %}hidden{% endif %}" id="week-{{ forloop.counter0 }}">
+        <h3 class="font-display text-lg font-bold mb-4">{{ week.label }}</h3>
+        {% for section in week.sections %}
+        {% cycle 'card-appetite-yellow' 'card-appetite-green' as appetite silent %}
+        <div class="polaris-card overflow-x-auto mb-4 {{ appetite }}">
+            <div class="px-4 py-2 font-display font-bold text-xs {% if appetite == 'card-appetite-yellow' %}text-hunger-yellow{% else %}text-hunger-green{% endif %}">{{ section.name }}</div>
+            <table class="polaris-table w-full text-sm min-w-[640px]">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2 text-left font-semibold">Item</th>
+                        {% for day in days %}
+                        <th class="px-4 py-2 text-left font-semibold">{{ day }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in section.rows %}
+                    <tr>
+                        <td class="px-4 py-2 font-semibold">{{ row.category }}</td>
+                        {% for item in row.items %}
+                        <td class="px-4 py-2">{{ item }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<script>
+    var tabs = document.querySelectorAll('.week-tab');
+    tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+            var idx = tab.dataset.week;
+            document.querySelectorAll('.week-panel').forEach(function (p) { p.classList.add('hidden'); });
+            document.getElementById('week-' + idx).classList.remove('hidden');
+            tabs.forEach(function (t) {
+                t.style.background = 'var(--secondary)';
+                t.style.color = 'var(--secondary-foreground)';
+            });
+            tab.style.background = 'var(--primary)';
+            tab.style.color = 'var(--primary-foreground)';
+        });
+    });
+</script>
+{% endblock %}

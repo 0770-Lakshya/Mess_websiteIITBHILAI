@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Committee | Pakadarpanalaya{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+    <div class="text-center">
+        <h2 class="font-display text-3xl font-extrabold">Student Mess Committee</h2>
+        <p class="polaris-muted text-sm mt-1">The student team managing menus, feedback and daily mess operations.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% for member in committee %}
+        <div class="polaris-card p-6 text-center">
+            <div class="w-24 h-24 rounded-full mx-auto overflow-hidden relative" style="background:rgba(69,52,125,.12)">
+                <img src="{% static member.photo %}" alt="{{ member.name }}" class="w-full h-full object-cover"
+                     onerror="this.style.display='none'; this.parentElement.querySelector('span').style.display='flex';">
+                <span class="w-full h-full items-center justify-center font-bold text-2xl hidden" style="display:none;color:var(--primary)">
+                    {{ member.name|truncatechars:1 }}
+                </span>
+            </div>
+            <h3 class="font-display font-bold mt-4">{{ member.name }}</h3>
+            <p class="text-xs polaris-muted mt-1">{{ member.role }}</p>
+            <p class="text-xs mt-2" style="color:var(--primary)">{{ member.email }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
