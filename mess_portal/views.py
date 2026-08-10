@@ -35,7 +35,7 @@ LEADERSHIP = [
     },
     {
         'name': 'Mess Coordinator,IIT Bhilai',
-        'role': 'Manish Kumar Yadav ',
+        'role': 'Manish Kumar  ',
         'quote': '',
         'photo': 'images/Coordinator.jpg',
     },

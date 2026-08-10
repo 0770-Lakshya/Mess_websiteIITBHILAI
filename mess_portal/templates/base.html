@@ -86,7 +86,7 @@
                         {% if request.resolver_match.url_name == 'committee' %}
                         <div class="absolute inset-0 -z-10 rounded-full bg-gradient-to-br from-[#45347D] to-[#5a479a] shadow-[0_6px_18px_-4px_rgba(69,52,125,0.55),inset_0_1px_0_rgba(255,255,255,0.15)]"></div>
                         {% endif %}
-                        <span class="mr-1.5 inline-block opacity-90">👥</span>Committee
+                        <span class="mr-1.5 inline-block opacity-90">👥</span>Council Members
                     </a>
 
                     <!-- Contact Us Link -->
@@ -154,24 +154,13 @@
 
 
 
-    
+
 
     <footer class="polaris-footer py-6 text-center">
         IIT Bhilai Mess Committee • Pakadarpanalaya Portal
+
     </footer>
 
-    <script>
-        var toggle = document.getElementById('themeToggle');
-        var root = document.documentElement;
-        function applyIcon() {
-            toggle.textContent = root.classList.contains('dark') ? '☀️' : '🌙';
-        }
-        applyIcon();
-        toggle.addEventListener('click', function () {
-            root.classList.toggle('dark');
-            localStorage.setItem('polaris-theme', root.classList.contains('dark') ? 'dark' : 'light');
-            applyIcon();
-        });
-    </script>
-</body>
 </html>
+
+
