@@ -16,20 +16,20 @@ SECTIONS = ['BREAKFAST', 'LUNCH', 'Tea Time', 'DINNER']
 LEADERSHIP = [
     {
         'name': 'Director, IIT Bhilai',
-        'role': 'Official Message',
+        'role': 'Dr Rajiv Prakash ',
         'quote': '',
         'photo': 'images/director.jpg',
     },
 
     {
         'name': 'Dean of Student Affairs,IIT Bhilai',
-        'role': 'Dean of Student Affairs',
+        'role': 'Dr Shudhanwa Patra',
         'quote': '',
-        'photo': 'images/Dosa.jpg',
+        'photo': 'images/dosa.jpg',
     },
     {
             'name': 'Faculty In-Charge (FIC), Mess',
-            'role': 'Faculty In-Charge',
+            'role': 'Dr Yagnesh Shadangi',
             'quote': "",
             'photo': 'images/fic.jpg',
     },
@@ -42,14 +42,14 @@ LEADERSHIP = [
 ]
 
 COMMITTEE = [
-    {'name': 'Student Representative', 'role': 'Mess Coordinator', 'email': 'messcoordinator@iitbhilai.ac.in', 'photo': 'images/member1.jpg'},
-    {'name': 'Menu Coordinator', 'role': 'Weekly Menu & Planning', 'email': 'messcoordinator@iitbhilai.ac.in', 'photo': 'images/member2.jpg'},
-    {'name': 'Feedback In-Charge', 'role': 'Complaints & Suggestions', 'email': 'ficmess@iitbhilai.ac.in', 'photo': 'images/member3.jpg'},
+    {'name': 'Mess Coordinator', 'role': 'Manish Kumar Yadav ', 'email': 'messcoordinator@iitbhilai.ac.in', 'photo': 'images/member1.jpg'},
+    {'name': 'Member', 'role': 'Abhishek Kumar', 'email': 'abhishekkumar@iitbhilai.ac.in', 'photo': 'images/member2.jpg'},
+    # {'name': 'Feedback In-Charge', 'role': 'Complaints & Suggestions', 'email': 'ficmess@iitbhilai.ac.in', 'photo': 'images/member3.jpg'},
 ]
 
 NOTICES = [
     {
-        'title': 'Mess Card is Mandatory at Every Meal',
+        'title': 'ID card is Mandatory at Every Meal',
         'date': 'Important',
         'category': 'Rules',
         'text': 'All students must carry their mess card while entering the dining hall. Entry without a mess card will be denied.',
@@ -76,20 +76,8 @@ NOTICES = [
         'text': 'Food, plates and cutlery must not be removed from the mess hall. Violators will be reported to the mess committee.',
         'color': '#45347d',
     },
-    {
-        'title': 'Guests Allowed Only on Weekends',
-        'date': 'Notice',
-        'category': 'Guests',
-        'text': 'Students may bring a maximum of one guest on Saturday or Sunday lunch. Guest coupons must be purchased at the mess office in advance.',
-        'color': '#d97706',
-    },
-    {
-        'title': 'Feedback & Complaints — Weekly Review',
-        'date': 'Notice',
-        'category': 'Feedback',
-        'text': 'Submit complaints through the committee members or the feedback box near the exit. Every complaint is reviewed every Friday.',
-        'color': '#8e7db4',
-    },
+    
+   
 ]
 
 

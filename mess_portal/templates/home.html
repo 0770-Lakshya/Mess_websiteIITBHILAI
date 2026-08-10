@@ -60,7 +60,7 @@
 <!-- Notice Board -->
 
 
-<section class="mb-14" style="background-image: url('{% static 'images/notice_bg.jpg' %}'); background-size: cover; background-position: center; opacity: 0.8;">
+<section class="mb-14" style="background-size: cover; background-position: center; opacity: 0.8;">
     <div class="text-center mb-8">
         <h2 class="font-display text-3xl font-extrabold">📢 Notice Board</h2>
         <p class="polaris-muted text-sm mt-1">Important instructions and updates for all students</p>
@@ -169,7 +169,7 @@
 {% endif %}
 {% comment %} {% endblock %} {% endcomment %}
 <!-- Leadership Banner Section -->
-<section class="mb-14">
+{% comment %} <section class="mb-14">
     <div class="text-center mb-8">
         <span class="pill mb-3 inline-block">👥 Our Leaders</span>
         <h2 class="font-display text-3xl font-extrabold">Meet the Team Behind Mess</h2>
@@ -197,6 +197,6 @@
         </div>
         {% endfor %}
     </div>
-</section>
+</section> {% endcomment %}
 
 {% endblock %}
