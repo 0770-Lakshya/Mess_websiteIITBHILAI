@@ -54,13 +54,26 @@
     </div>
 </section>
 {% endif %}
-
+{% comment %} <!-- Mess Video -->
+<section class="max-w-4xl mx-auto mb-10">
+    <div class="text-center mb-6">
+        <span class="pill">🎬 Mess Gallery</span>
+    </div>
+    <div class="polaris-card p-3 md:p-5 overflow-hidden">
+        <video controls preload="metadata" playsinline class="w-full rounded-xl"
+               {% comment %} poster="{% static 'images/director.jpg' %}"> {% endcomment %}
+            {% comment %} <source src="{% static 'videos/mess_video.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</section>
+ {% endcomment %} 
 
 
 <!-- Notice Board -->
 
 
-<section class="mb-14" style="background-size: cover; background-position: center; opacity: 0.8;">
+<section class="mb-14" style="background-image: url('{% static 'images/notice_bg.png' %}'); background-size: cover; background-position: center; opacity: 0.8;">
     <div class="text-center mb-8">
         <h2 class="font-display text-3xl font-extrabold">📢 Notice Board</h2>
         <p class="polaris-muted text-sm mt-1">Important instructions and updates for all students</p>
@@ -113,8 +126,8 @@
 
 <!-- Leadership / Official Messages -->
 <section class="mb-14 text-center">
-    <h2 class="font-display text-3xl font-extrabold mb-2">Messages from Leadership</h2>
-    <p class="polaris-muted text-sm mb-8">Official words from those who run the mess</p>
+    <h2 class="font-display text-3xl font-extrabold mb-2">Meet the Team Behind Mess</h2>
+    <p class="polaris-muted text-sm mb-8">Official dignities those who run the mess</p>
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
         {% for person in leadership %}
         <div class="polaris-card p-6 flex flex-col items-center text-center polaris-card-hover">

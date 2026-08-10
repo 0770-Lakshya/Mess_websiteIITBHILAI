@@ -59,7 +59,7 @@ NOTICES = [
         'title': 'Meal Timings — Strictly Enforced',
         'date': 'Important',
         'category': 'Timings',
-        'text': 'Breakfast 8:00–10:00 AM • Lunch 12:00–2:00 PM • Snacks 5:00–6:00 PM • Dinner 7:00–9:00 PM. No service outside these hours.',
+        'text': 'Breakfast 8:00–10:00 AM • Lunch 12:30–2:30 PM • Snacks 5:00–6:00 PM • Dinner 8:00–10:00 PM. No service outside these hours.',
         'color': '#2541b2',
     },
     {
