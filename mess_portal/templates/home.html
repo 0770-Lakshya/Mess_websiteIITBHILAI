@@ -39,12 +39,12 @@
     <div class="space-y-4 max-w-4xl mx-auto text-left">
         {% for ann in announcements %}
         <div class="polaris-card p-5 polaris-card-hover flex items-start gap-4">
-            <div class="font-display font-bold" style="font-size:2.5rem;line-height:2.5rem">
+            <div class="font-display font-bold text-2xl md:text-[2.5rem] leading-none">
                 {% if ann.kind == 'special' %}🎉{% elif ann.kind == 'timing' %}🕒{% elif ann.kind == 'meal' %}🍛{% else %}📢{% endif %}
             </div>
             <div>
                 <div class="flex flex-wrap items-center gap-2 mb-1">
-                    <h3 class="font-display font-bold" style="font-size:2.5rem;line-height:2.5rem">{{ ann.title }}</h3>
+                    <h3 class="font-display font-bold text-2xl md:text-[2.5rem] leading-none">{{ ann.title }}</h3>
                     <span class="text-[10px] font-bold tracking-[.15em] uppercase px-2 py-0.5 rounded-full" style="background:{{ ann.color }}22;color:{{ ann.color }}">{{ ann.get_kind_display }}</span>
                 </div>
                 <p class="text-sm polaris-muted leading-relaxed">{{ ann.message }}</p>
@@ -102,7 +102,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-sm">
             {% for row in section.rows %}
             <div class="flex gap-2 py-1 border-b" style="border-color:var(--border)">
-                <span class="w-40 shrink-0 polaris-muted text-xs font-semibold pt-0.5">{{ row.category }}</span>
+                <span class="min-w-[5.5rem] flex-none polaris-muted text-xs font-semibold pt-0.5">{{ row.category }}</span>
                 <span>{{ row.item }}</span>
             </div>
             {% endfor %}
@@ -115,22 +115,18 @@
 <section class="mb-14 text-center">
     <h2 class="font-display text-3xl font-extrabold mb-2">Messages from Leadership</h2>
     <p class="polaris-muted text-sm mb-8">Official words from those who run the mess</p>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
         {% for person in leadership %}
-        <div class="polaris-card p-6">
-            <div class="flex items-center gap-4 mb-3">
-                <div class="w-14 h-14 shrink-0 rounded-full overflow-hidden relative" style="background:rgba(69,52,125,.12)">
-                    <img src="{% static person.photo %}" alt="{{ person.name }}" class="w-full h-full object-cover"
-                         onerror="this.style.display='none'; this.parentElement.querySelector('span').style.display='flex';">
-                    <span class="w-full h-full items-center justify-center font-bold hidden" style="display:none;color:var(--primary)">
-                        {{ person.name|truncatechars:1 }}
-                    </span>
-                </div>
-                <div>
-                    <h3 class="font-display font-bold">{{ person.name }}</h3>
-                    <p class="text-xs polaris-muted">{{ person.role }}</p>
-                </div>
+        <div class="polaris-card p-6 flex flex-col items-center text-center polaris-card-hover">
+            <div class="relative w-28 h-28 sm:w-32 sm:h-32 shrink-0 rounded-full overflow-hidden mb-4 border-4" style="border-color:var(--primary);background:rgba(69,52,125,.12)">
+                <img src="{% static person.photo %}" alt="{{ person.name }}" class="w-full h-full object-cover"
+                     onerror="this.style.display='none'; this.parentElement.querySelector('span').style.display='flex';">
+                <span class="w-full h-full items-center justify-center font-bold text-4xl hidden" style="display:none;color:var(--primary)">
+                    {{ person.name|truncatechars:1 }}
+                </span>
             </div>
+            <h3 class="font-display font-bold">{{ person.name }}</h3>
+            <p class="text-xs polaris-muted mb-3">{{ person.role }}</p>
             <p class="serif text-sm polaris-muted italic leading-relaxed">{{ person.quote }}</p>
         </div>
         {% endfor %}
@@ -149,7 +145,7 @@
         <table class="polaris-table w-full text-sm min-w-[640px]">
             <thead>
                 <tr>
-                    <th class="px-4 py-2 text-left font-semibold">Item</th>
+                    <th class="px-4 py-2 text-left font-semibold sticky left-0 z-10" style="background:var(--card)">Item</th>
                     {% for day in days %}
                     <th class="px-4 py-2 text-left font-semibold">{{ day }}</th>
                     {% endfor %}
@@ -158,7 +154,7 @@
             <tbody>
                 {% for row in section.rows %}
                 <tr>
-                    <td class="px-4 py-2 font-semibold">{{ row.category }}</td>
+                    <td class="px-4 py-2 font-semibold sticky left-0 z-10" style="background:var(--card)">{{ row.category }}</td>
                     {% for item in row.items %}
                     <td class="px-4 py-2">{{ item }}</td>
                     {% endfor %}
@@ -169,5 +165,38 @@
     </div>
     {% endfor %}
 </section>
+
 {% endif %}
+{% comment %} {% endblock %} {% endcomment %}
+<!-- Leadership Banner Section -->
+<section class="mb-14">
+    <div class="text-center mb-8">
+        <span class="pill mb-3 inline-block">👥 Our Leaders</span>
+        <h2 class="font-display text-3xl font-extrabold">Meet the Team Behind Mess</h2>
+    </div>
+
+    <!-- Cards: 1 column on mobile, 2 on tablet, 4 on desktop -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+        {% for person in leadership %}
+        <div class="polaris-card overflow-hidden flex flex-col polaris-card-hover">
+            <!-- Banner image (16:9) -->
+            <div class="relative h-52 sm:h-56 overflow-hidden" style="background:rgba(69,52,125,.12)">
+                <img src="{% static person.photo %}" alt="{{ person.name }}"
+                     class="w-full h-full object-cover"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="hidden items-center justify-center w-full h-full text-4xl" style="display:none">🎓</div>
+                <!-- Overlay gradient at the bottom -->
+                <div class="absolute inset-x-0 bottom-0 h-16" style="background:linear-gradient(to top, rgba(15,17,21,.55), transparent)"></div>
+                <span class="absolute bottom-3 left-4 text-white text-xs font-bold tracking-widest uppercase">{{ person.role }}</span>
+            </div>
+            <!-- Text below image -->
+            <div class="p-5 text-left flex-1 flex flex-col">
+                <h3 class="font-display font-bold text-lg">{{ person.name }}</h3>
+                <p class="serif text-sm polaris-muted italic leading-relaxed mt-2 flex-1">{{ person.quote }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
 {% endblock %}

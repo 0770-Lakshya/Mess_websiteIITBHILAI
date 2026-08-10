@@ -17,26 +17,27 @@ LEADERSHIP = [
     {
         'name': 'Director, IIT Bhilai',
         'role': 'Official Message',
-        'quote': '"A healthy campus begins at the mess. Pakadarpanalaya is our commitment to nutritious, hygienic and affordable dining for every student."',
+        'quote': '',
         'photo': 'images/director.jpg',
     },
+
     {
-        'name': 'Faculty In-Charge (FIC), Mess',
-        'role': 'Faculty In-Charge',
-        'quote': '"We work closely with our caterers to ensure quality, variety and transparency in everything served on campus."',
-        'photo': 'images/fic.jpg',
+        'name': 'Dean of Student Affairs,IIT Bhilai',
+        'role': 'Dean of Student Affairs',
+        'quote': '',
+        'photo': 'images/Dosa.jpg',
     },
     {
-        'name': 'Galav Caterers',
-        'role': 'Catering Partner',
-        'quote': '"Proud to serve IIT Bhilai. Hygiene first, taste always — that is our daily promise to the mess."',
-        'photo': 'images/galav.jpg',
+            'name': 'Faculty In-Charge (FIC), Mess',
+            'role': 'Faculty In-Charge',
+            'quote': "",
+            'photo': 'images/fic.jpg',
     },
     {
-        'name': 'Shreesai Caterers',
-        'role': 'Catering Partner',
-        'quote': '"Serving with care and consistency, so every meal feels like home."',
-        'photo': 'images/shreesai.jpg',
+        'name': 'Mess Coordinator,IIT Bhilai',
+        'role': 'Manish Kumar Yadav ',
+        'quote': '',
+        'photo': 'images/Coordinator.jpg',
     },
 ]
 
@@ -95,7 +96,7 @@ NOTICES = [
 MENU_CACHE_KEY = 'mess_menu_weeks'
 MENU_HASH_KEY = 'mess_menu_hash'
 MENU_CHECK_KEY = 'mess_menu_last_check'
-MENU_CHECK_INTERVAL = 1200 # 20 min  between Google Sheet probes
+MENU_CHECK_INTERVAL = 1200 # 20 min  between Google Sheet examination
 MENU_CACHE_TTL = 86400  # 24h 
 
 def _file_hash(excel_path):

@@ -32,7 +32,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-sm">
                 {% for row in section.rows %}
                 <div class="flex gap-2 py-1 border-b" style="border-color:var(--border)">
-                    <span class="w-40 shrink-0 polaris-muted text-xs font-semibold pt-0.5">{{ row.category }}</span>
+                    <span class="min-w-[5.5rem] flex-none polaris-muted text-xs font-semibold pt-0.5">{{ row.category }}</span>
                     <span>{{ row.item }}</span>
                 </div>
                 {% endfor %}

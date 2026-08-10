@@ -35,7 +35,7 @@
             <table class="polaris-table w-full text-sm min-w-[640px]">
                 <thead>
                     <tr>
-                        <th class="px-4 py-2 text-left font-semibold">Item</th>
+                        <th class="px-4 py-2 text-left font-semibold sticky left-0 z-10" style="background:var(--card)">Item</th>
                         {% for day in days %}
                         <th class="px-4 py-2 text-left font-semibold">{{ day }}</th>
                         {% endfor %}
@@ -44,7 +44,7 @@
                 <tbody>
                     {% for row in section.rows %}
                     <tr>
-                        <td class="px-4 py-2 font-semibold">{{ row.category }}</td>
+                        <td class="px-4 py-2 font-semibold sticky left-0 z-10" style="background:var(--card)">{{ row.category }}</td>
                         {% for item in row.items %}
                         <td class="px-4 py-2">{{ item }}</td>
                         {% endfor %}
