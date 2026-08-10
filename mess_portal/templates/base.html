@@ -127,7 +127,19 @@
             <!-- Mobile Navigation Drawer -->
             <div id="mobile-capsule-nav" class="hidden absolute top-full left-0 right-0 mt-3 rounded-2xl border border-black/[0.08] bg-white/95 p-4 backdrop-blur-xl shadow-xl md:hidden animate-fade-in">
                 <div class="flex flex-col gap-2">
-
+                    <a href="{% url 'home' %}" onclick="document.getElementById('mobile-capsule-nav').classList.add('hidden')" class="rounded-xl px-4 py-3 text-sm font-bold text-[#0f1115] hover:bg-[#45347D]/10 transition-all duration-200">🏠 Home </a>
+                    <a href="{% url 'menu' %}" onclick="document.getElementById('mobile-capsule-nav').classList.add('hidden')" class="rounded-xl px-4 py-3 text-sm font-bold text-[#0f1115] hover:bg-[#45347D]/10 transition-all duration-200">🍽️ Menu</a>
+                    <a href="{% url 'menu_sheet' %}" onclick="document.getElementById('mobile-capsule-nav').classList.add('hidden')" class="rounded-xl px-4 py-3 text-sm font-bold text-[#0f1115] hover:bg-[#45347D]/10 transition-all duration-200">📊 Weekly Menu</a>
+                    <a href="{% url 'committee' %}" onclick="document.getElementById('mobile-capsule-nav').classList.add('hidden')" class="rounded-xl px-4 py-3 text-sm font-bold text-[#0f1115] hover:bg-[#45347D]/10 transition-all duration-200">👥 Committee</a>
+                    <a href="{% url 'contact' %}" onclick="document.getElementById('mobile-capsule-nav').classList.add('hidden')" class="rounded-xl px-4 py-3 text-sm font-bold text-[#0f1115] hover:bg-[#45347D]/10 transition-all duration-200">📞 Contact Us</a>
+                    <a href="{% url 'complaints' %}" onclick="document.getElementById('mobile-capsule-nav').classList.add('hidden')" class="rounded-xl px-4 py-3 text-sm font-bold text-[#45347D] bg-[#45347D]/10 hover:bg-[#45347D]/20 transition-all duration-200">🙋 Complain</a>
+                    {% if user.is_authenticated %}
+                    <a href="/admin/" onclick="document.getElementById('mobile-capsule-nav').classList.add('hidden')" class="rounded-xl px-4 py-3 text-sm font-bold text-[#45347D] hover:bg-[#45347D]/10 transition-all duration-200">⚙️ Admin</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
 <!-- 2. MAIN SITE CONTENT (This sits below the header and handles normal scrolling) -->
@@ -138,7 +150,7 @@
 </main>
 
  {% comment %} <main class="flex-1 w-full max-w-7xl mx-auto px-4 py-8">
-
+z
         {% block content %}
 
         {% endblock %}
@@ -154,5 +166,19 @@
     <footer class="polaris-footer py-6 text-center">
         IIT Bhilai Mess Committee • Pakadarpanalaya Portal
     </footer>
+
+    <script>
+        var toggle = document.getElementById('themeToggle');
+        var root = document.documentElement;
+        function applyIcon() {
+            toggle.textContent = root.classList.contains('dark') ? '☀️' : '🌙';
+        }
+        applyIcon();
+        toggle.addEventListener('click', function () {
+            root.classList.toggle('dark');
+            localStorage.setItem('polaris-theme', root.classList.contains('dark') ? 'dark' : 'light');
+            applyIcon();
+        });
+    </script>
 </body>
 </html>
