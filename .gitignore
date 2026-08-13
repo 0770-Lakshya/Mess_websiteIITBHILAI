@@ -1,0 +1,29 @@
+
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Django
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# Environment variables 
+.env
+.env.*
+
+
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+
+docker-compose.override.yml
+
+
+mess_menu.xlsx

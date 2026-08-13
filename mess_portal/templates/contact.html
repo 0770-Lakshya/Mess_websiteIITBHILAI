@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us | Pakadarpanalaya{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+    <div class="text-center">
+        <h2 class="font-display text-3xl font-extrabold">Contact Us</h2>
+        <p class="polaris-muted text-sm mt-1">Reach the mess committee, caterers, or drop feedback.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+        <div class="polaris-card p-6">
+            <h3 class="font-display font-bold mb-3">Mess Committee</h3>
+            <p class="text-sm polaris-muted leading-relaxed">
+                Mess Office, Mess Block
+                <br> IIT Bhilai Campus, Kutelabhata,
+                <br>Bhilai, Chhattisgarh 491002
+            </p>
+            <div class="mt-4 space-y-1 text-sm">
+                <p>📧 <a href="mailto:messcoordinator@iitbhilai.ac.in" style="color:var(--primary)">messcoordinator@iitbhilai.ac.in</a></p>
+                <p>📞 +91 </p>
+            </div>
+        </div>
+
+        <div class="polaris-card p-6">
+            <h3 class="font-display font-bold mb-3">Caterers</h3>
+            <div class="space-y-3 text-sm">
+                <div>
+                    <p class="font-semibold">Galav Caterers</p>
+                    <p class="polaris-muted text-xs">📧 <a href="mailto:galav@iitbhilai.ac.in" style="color:var(--primary)">galav@iitbhilai.ac.in</a></p>
+                </div>
+                <div>
+                    <p class="font-semibold">Shreesai Caterers</p>
+                    <p class="polaris-muted text-xs">📧 <a href="mailto:shreesai@iitbhilai.ac.in" style="color:var(--primary)">shreesai@iitbhilai.ac.in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

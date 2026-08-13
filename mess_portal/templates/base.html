@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Pakadarpanalaya | IIT Bhilai Mess{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Bebas+Neue&family=Fraunces:opsz,wght,SOFT@9..144,300..800,50..100&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    borderRadius: { DEFAULT: '10px' },
+                }
+            }
+        };
+    </script>
+    <link rel="stylesheet" href="{% static 'css/polaris.css' %}">
+</head>
+<body>
+
+    <!-- Polaris Navbar -->
+    <!-- 1. FLOATING NAVBAR (Stays at the very top, independent of content) -->
+<header class="fixed inset-x-0 top-0 z-50 flex justify-center px-6 pt-5">
+    <div class="relative w-full max-w-[1340px]"> <!-- Increased max-width slightly for a grander look -->
+        <!-- Bottom Blur Shadow Accent (Enhanced for a larger navbar) -->
+        <div class="pointer-events-none absolute inset-x-10 -bottom-4 h-8 rounded-full bg-[#45347D]/20 blur-2xl"></div>
+        
+        <!-- Outer Gradient Border Container -->
+        <div class="relative rounded-full p-[1px] transition-all duration-500" style="background: linear-gradient(135deg, rgba(69, 52, 125, 0.35) 0%, rgba(255, 255, 255, 0.6) 40%, rgba(142, 125, 180, 0.35) 100%);">
+          
+            <!-- Main Glassmorphism Content Bar (Increased py to 3.5 and px to 7) -->
+            <div class="flex items-center justify-between gap-8 rounded-full bg-white/80 px-7 py-3.5 backdrop-blur-2xl shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.9),0_6px_22px_-8px_rgba(69,52,125,0.20),0_16px_44px_-10px_rgba(69,52,125,0.25)] hover:shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.95),0_8px_28px_-8px_rgba(69,52,125,0.28)] transition-all duration-300">
+            
+                <!-- Logo & Brand Section -->
+                <a href="{% url 'home' %}" class="group flex items-center gap-4 pl-1 pr-2">
+                    <span class="flex items-center gap-3">
+                        <!-- IIT Bhilai Image Logo / Fallback Block (Slightly increased to h-11 w-11) -->
+                        <div class="relative flex h-11 w-11 items-center justify-center">
+                            <img src="{% static 'images/iit_bhilai_logo.png' %}" alt="IIT Bhilai" class="h-11 w-11 rounded-xl object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="hidden absolute inset-0 rounded-xl border-2 border-white/30 bg-[#45347d] text-[11px] text-white items-center justify-center font-bold" style="display:none">
+                                IITBH
+                            </div>
+                        </div>
+
+                        <!-- Brand Title Strings (Increased text sizing) -->
+                        <span class="h-6 border-l border-black/[0.15]"></span>
+                        <div class="flex flex-col justify-center">
+                            <span class="text-[20px] leading-none text-[#0f1115] sm:text-[22px] font-bold tracking-tight" style="font-family: var(--font-display, sans-serif); font-weight: 800;">Pakadarpanalaya</span>
+                            <span class="mt-1 text-[10.5px] leading-none tracking-[0.06em] text-[#6b6e76] font-bold uppercase">IIT Bhilai • Campus Dining</span>
+                        </div>
+                    </span>
+                </a>
+
+                <!-- Navigation Links (Increased text sizing to 14px / font size padding) -->
+                <nav class="relative hidden items-center gap-1 md:flex">
+                    <!-- Home Link -->
+                    <a href="{% url 'home' %}" class="relative z-10 rounded-full px-3.5 py-2 text-[13.5px] lg:text-[14.5px] font-bold transition-all duration-300 {% if request.resolver_match.url_name == 'home' %}text-white{% else %}text-[#0f1115]/70 hover:text-[#45347D]{% endif %}">
+                        {% if request.resolver_match.url_name == 'home' %}
+                        <div class="absolute inset-0 -z-10 rounded-full bg-gradient-to-br from-[#45347D] to-[#5a479a] shadow-[0_6px_18px_-4px_rgba(69,52,125,0.55),inset_0_1px_0_rgba(255,255,255,0.15)]"></div>
+                        {% endif %}
+                        <span class="mr-1.5 inline-block opacity-90">🏠</span>Home
+                    </a>
+
+                    <!-- Menu Link -->
+                    <a href="{% url 'menu' %}" class="relative z-10 rounded-full px-3.5 py-2 text-[13.5px] lg:text-[14.5px] font-bold transition-all duration-300 {% if request.resolver_match.url_name == 'menu' %}text-white{% else %}text-[#0f1115]/70 hover:text-[#45347D]{% endif %}">
+                        {% if request.resolver_match.url_name == 'menu' %}
+                        <div class="absolute inset-0 -z-10 rounded-full bg-gradient-to-br from-[#45347D] to-[#5a479a] shadow-[0_6px_18px_-4px_rgba(69,52,125,0.55),inset_0_1px_0_rgba(255,255,255,0.15)]"></div>
+                        {% endif %}
+                        <span class="mr-1.5 inline-block opacity-90">🍽️</span>Menu
+                    </a>
+
+                    <!-- Weekly Menu Link -->
+                    <a href="{% url 'menu_sheet' %}" class="relative z-10 rounded-full px-3.5 py-2 text-[13.5px] lg:text-[14.5px] font-bold transition-all duration-300 {% if request.resolver_match.url_name == 'menu_sheet' %}text-white{% else %}text-[#0f1115]/70 hover:text-[#45347D]{% endif %}">
+                        {% if request.resolver_match.url_name == 'menu_sheet' %}
+                        <div class="absolute inset-0 -z-10 rounded-full bg-gradient-to-br from-[#45347D] to-[#5a479a] shadow-[0_6px_18px_-4px_rgba(69,52,125,0.55),inset_0_1px_0_rgba(255,255,255,0.15)]"></div>
+                        {% endif %}
+                        <span class="mr-1.5 inline-block opacity-90">📊</span>Weekly Menu
+                    </a>
+
+                    <!-- Committee Link -->
+                    <a href="{% url 'committee' %}" class="relative z-10 rounded-full px-3.5 py-2 text-[13.5px] lg:text-[14.5px] font-bold transition-all duration-300 {% if request.resolver_match.url_name == 'committee' %}text-white{% else %}text-[#0f1115]/70 hover:text-[#45347D]{% endif %}">
+                        {% if request.resolver_match.url_name == 'committee' %}
+                        <div class="absolute inset-0 -z-10 rounded-full bg-gradient-to-br from-[#45347D] to-[#5a479a] shadow-[0_6px_18px_-4px_rgba(69,52,125,0.55),inset_0_1px_0_rgba(255,255,255,0.15)]"></div>
+                        {% endif %}
+                        <span class="mr-1.5 inline-block opacity-90">👥</span>Council Members
+                    </a>
+
+                    <!-- Contact Us Link -->
+                    <a href="{% url 'contact' %}" class="relative z-10 rounded-full px-3.5 py-2 text-[13.5px] lg:text-[14.5px] font-bold transition-all duration-300 {% if request.resolver_match.url_name == 'contact' %}text-white{% else %}text-[#0f1115]/70 hover:text-[#45347D]{% endif %}">
+                        {% if request.resolver_match.url_name == 'contact' %}
+                        <div class="absolute inset-0 -z-10 rounded-full bg-gradient-to-br from-[#45347D] to-[#5a479a] shadow-[0_6px_18px_-4px_rgba(69,52,125,0.55),inset_0_1px_0_rgba(255,255,255,0.15)]"></div>
+                        {% endif %}
+                        <span class="mr-1.5 inline-block opacity-90">📞</span>Contact Us
+                    </a>
+                </nav>
+
+                
+
+                    <!-- Admin Conditional Pill Toggle -->
+                    {% if user.is_authenticated %}
+                    <a href="/admin/" class="hidden sm:inline-flex items-center text-[13px] font-bold text-[#45347D] bg-[#45347D]/10 px-4 py-2 rounded-full hover:bg-[#45347D]/20 transition-all duration-200">
+                        ⚙️ Admin
+                    </a>
+                    {% endif %}
+
+                    <!-- Premium Primary CTA (Increased px-6 py-3 and text size) -->
+                    <div class="hidden lg:flex">
+                        <a href="{% url 'complaints' %}" class="group relative inline-flex items-center gap-2 rounded-full border border-black/[0.15] bg-transparent px-6 py-3 text-[13.5px] font-bold text-[#0f1115] transition-all duration-300 ease-in-out hover:border-[#45347D] hover:text-[#45347D] hover:gap-4 active:opacity-70 focus:outline-none">
+                            <span class="relative z-10 inline-flex items-center gap-2 group-hover:gap-3 transition-all duration-300 ease-in-out">
+                                <span>🙋</span> Complain
+                                <svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right h-4 w-4"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                            </span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile Navigation Hamburger (Slightly larger container) -->
+                    <button aria-label="Toggle menu" onclick="document.getElementById('mobile-capsule-nav').classList.toggle('hidden')" class="grid h-11 w-11 place-items-center rounded-full border border-[#45347D]/15 bg-gradient-to-br from-white to-[#f5f2fa] text-[#45347D] shadow-[0_2px_8px_-2px_rgba(69,52,125,0.20)] md:hidden transition-all duration-200">
+                        <svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu h-4 w-4"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Drawer -->
+            <div id="mobile-capsule-nav" class="hidden absolute top-full left-0 right-0 mt-3 rounded-2xl border border-black/[0.08] bg-white/95 p-4 backdrop-blur-xl shadow-xl md:hidden animate-fade-in">
+                <div class="flex flex-col gap-2">
+                    <a href="{% url 'home' %}" onclick="document.getElementById('mobile-capsule-nav').classList.add('hidden')" class="rounded-xl px-4 py-3 text-sm font-bold text-[#0f1115] hover:bg-[#45347D]/10 transition-all duration-200">🏠 Home </a>
+                    <a href="{% url 'menu' %}" onclick="document.getElementById('mobile-capsule-nav').classList.add('hidden')" class="rounded-xl px-4 py-3 text-sm font-bold text-[#0f1115] hover:bg-[#45347D]/10 transition-all duration-200">🍽️ Menu</a>
+                    <a href="{% url 'menu_sheet' %}" onclick="document.getElementById('mobile-capsule-nav').classList.add('hidden')" class="rounded-xl px-4 py-3 text-sm font-bold text-[#0f1115] hover:bg-[#45347D]/10 transition-all duration-200">📊 Weekly Menu</a>
+                    <a href="{% url 'committee' %}" onclick="document.getElementById('mobile-capsule-nav').classList.add('hidden')" class="rounded-xl px-4 py-3 text-sm font-bold text-[#0f1115] hover:bg-[#45347D]/10 transition-all duration-200">👥 Committee</a>
+                    <a href="{% url 'contact' %}" onclick="document.getElementById('mobile-capsule-nav').classList.add('hidden')" class="rounded-xl px-4 py-3 text-sm font-bold text-[#0f1115] hover:bg-[#45347D]/10 transition-all duration-200">📞 Contact Us</a>
+                    <a href="{% url 'complaints' %}" onclick="document.getElementById('mobile-capsule-nav').classList.add('hidden')" class="rounded-xl px-4 py-3 text-sm font-bold text-[#45347D] bg-[#45347D]/10 hover:bg-[#45347D]/20 transition-all duration-200">🙋 Complain</a>
+                    {% if user.is_authenticated %}
+                    <a href="/admin/" onclick="document.getElementById('mobile-capsule-nav').classList.add('hidden')" class="rounded-xl px-4 py-3 text-sm font-bold text-[#45347D] hover:bg-[#45347D]/10 transition-all duration-200">⚙️ Admin</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+</header>
+
+<!-- 2. MAIN SITE CONTENT (This sits below the header and handles normal scrolling) -->
+<!-- pt-24 adds top padding so your main website text isn't hidden underneath the floating navbar -->
+<main class="w-full min-h-screen pt-28 px-4 bg-gray-50 text-slate-900">
+    
+    {% block content %}
+        {% endblock %}
+</main>
+
+
+
+
+
+    <footer class="polaris-footer py-6 text-center">
+        IIT Bhilai Mess Committee • Pakadarpanalaya Portal
+
+    </footer>
+
+</html>
+
+

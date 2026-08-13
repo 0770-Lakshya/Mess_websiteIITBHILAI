@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero -->
+<section class="mb-14 text-center">
+    <div class="max-w-3xl mx-auto space-y-5">
+        
+        <h1 class="hero-font text-5xl md:text-7xl leading-none">PAKADAR<span class="gradient-text">PANALAYA</span></h1>
+        <p class="polaris-muted text-lg mx-auto max-w-xl">
+            The official dining portal of IIT Bhilai — live menu, weekly schedule, leadership messages and your student mess committee, all in one place.
+        </p>
+        <div class="flex gap-3 flex-wrap justify-center">
+            <a href="{% url 'menu' %}" class="btn-primary">Today's Menu</a>
+            <a href="{% url 'menu_sheet' %}" class="btn-ghost">Weekly Menu .XLS</a>
+        </div>
+    </div>
+    <div class="max-w-4xl mx-auto mt-10 polaris-card overflow-hidden aspect-[16/9] polaris-card-hover">
+        <img src="{% static 'images/pakadarpanalaya.jpg' %}" alt="Pakadarpanalaya Mess, IIT Bhilai" class="w-full h-full hero-image"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="hidden items-center justify-center w-full h-full" style="background:rgba(69,52,125,.1)">🍽️</div>
+    </div>
+</section>
+
+<!-- Appetite strip -->
+<div class="appetite-strip max-w-4xl mx-auto rounded-xl px-6 py-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 mb-14">
+    <span class="text-sm font-semibold text-hunger-yellow">🍌 Breakfast 8:00 – 10:00 AM</span>
+    <span class="text-sm font-semibold text-hunger-green">🥗 Lunch 12:30  – 2:30PM</span>
+    <span class="text-sm font-semibold text-hunger-yellow">🍪 Snacks 5:00 – 6:00 PM</span>
+    <span class="text-sm font-semibold text-hunger-green">🍛 Dinner 8:00 – 10:00 PM</span>
+</div>
+
+<!-- Announcements -->
+{% if announcements %}
+<section class="mb-10">
+    <div class="text-center mb-6">
+        <span class="pill" class="highlight">📣 Announcements</span>
+    </div>
+    <div class="space-y-4 max-w-4xl mx-auto text-left">
+        {% for ann in announcements %}
+        <div class="polaris-card p-5 polaris-card-hover flex items-start gap-4">
+            <div class="font-display font-bold text-2xl md:text-[2.5rem] leading-none">
+                {% if ann.kind == 'special' %}🎉{% elif ann.kind == 'timing' %}🕒{% elif ann.kind == 'meal' %}🍛{% else %}📢{% endif %}
+            </div>
+            <div>
+                <div class="flex flex-wrap items-center gap-2 mb-1">
+                    <h3 class="font-display font-bold text-2xl md:text-[2.5rem] leading-none">{{ ann.title }}</h3>
+                    <span class="text-[10px] font-bold tracking-[.15em] uppercase px-2 py-0.5 rounded-full" style="background:{{ ann.color }}22;color:{{ ann.color }}">{{ ann.get_kind_display }}</span>
+                </div>
+                <p class="text-sm polaris-muted leading-relaxed">{{ ann.message }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+{% comment %} <!-- Mess Video -->
+<section class="max-w-4xl mx-auto mb-10">
+    <div class="text-center mb-6">
+        <span class="pill">🎬 Mess Gallery</span>
+    </div>
+    <div class="polaris-card p-3 md:p-5 overflow-hidden">
+        <video controls preload="metadata" playsinline class="w-full rounded-xl"
+               {% comment %} poster="{% static 'images/director.jpg' %}"> {% endcomment %}
+            {% comment %} <source src="{% static 'videos/mess_video.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</section>
+ {% endcomment %} 
+
+
+<!-- Notice Board -->
+
+
+<section class="mb-14" style="background-image: url('{% static 'images/notice_bg.png' %}'); background-size: cover; background-position: center; opacity: 0.8;">
+    <div class="text-center mb-8">
+        <h2 class="font-display text-3xl font-extrabold">📢 Notice Board</h2>
+        <p class="polaris-muted text-sm mt-1">Important instructions and updates for all students</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 text-left">
+        {% for notice in notices %}
+        <div class="polaris-card p-5 polaris-card-hover">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="nav-icon" style="background:{{ notice.color }}22">📌</span>
+                <span class="text-[10px] font-bold tracking-[.15em] uppercase" style="color:{{ notice.color }}">{{ notice.category }}</span>
+            </div>
+            <h3 class="font-display font-bold mb-1" style="font-size:1.5rem;line-height:1.5rem">{{ notice.title }}</h3>
+            <p class="text-sm polaris-muted leading-relaxed">{{ notice.text }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+
+<!-- Today's Menu -->
+<section class="mb-14 text-center">
+    <div class="mb-6" >
+        <span class="pill-yellow mb-3 inline-block">🍽️ Fresh & Served</span>
+        <h2 class="font-display text-3xl font-extrabold"> Today's Live Menu — {{ today }}</h2>
+        <p class="polaris-muted text-sm mt-1">Fresh from the official mess sheet</p>
+    </div>
+
+    {% if menu_error %}
+    <div class="polaris-card p-6 mb-6 text-left" style="border-color:rgba(212,24,61,.4)">
+        <p class="text-sm polaris-muted">{{ menu_error }}</p>
+    </div>
+    {% endif %}
+
+    {% for section in today_sections %}
+    {% cycle 'card-appetite-yellow' 'card-appetite-green' as appetite silent %}
+    <div class="polaris-card p-6 mb-4 polaris-card-hover text-left {{ appetite }}">
+        <h3 class="font-display font-bold mb-4 flex items-center justify-center gap-2 {% if appetite == 'card-appetite-yellow' %}text-hunger-yellow{% else %}text-hunger-green{% endif %}">{{ section.name }}</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+            {% for row in section.rows %}
+            <div class="flex gap-2 py-1 border-b" style="border-color:var(--border)">
+                <span class="min-w-[5.5rem] flex-none polaris-muted text-xs font-semibold pt-0.5">{{ row.category }}</span>
+                <span>{{ row.item }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<!-- Leadership / Official Messages -->
+<section class="mb-14 text-center">
+    <h2 class="font-display text-3xl font-extrabold mb-2">Meet the Team Behind Mess</h2>
+    <p class="polaris-muted text-sm mb-8">Official dignities those who run the mess</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+        {% for person in leadership %}
+        <div class="polaris-card p-6 flex flex-col items-center text-center polaris-card-hover">
+            <div class="relative w-28 h-28 sm:w-32 sm:h-32 shrink-0 rounded-full overflow-hidden mb-4 border-4" style="border-color:var(--primary);background:rgba(69,52,125,.12)">
+                <img src="{% static person.photo %}" alt="{{ person.name }}" class="w-full h-full object-cover"
+                     onerror="this.style.display='none'; this.parentElement.querySelector('span').style.display='flex';">
+                <span class="w-full h-full items-center justify-center font-bold text-4xl hidden" style="display:none;color:var(--primary)">
+                    {{ person.name|truncatechars:1 }}
+                </span>
+            </div>
+            <h3 class="font-display font-bold">{{ person.name }}</h3>
+            <p class="text-xs polaris-muted mb-3">{{ person.role }}</p>
+            <p class="serif text-sm polaris-muted italic leading-relaxed">{{ person.quote }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Weekly at a glance -->
+{% if weeks %}
+<section class="text-center">
+    <h2 class="font-display text-3xl font-extrabold mb-2">{{ weeks.0.label }} at a Glance</h2>
+    <p class="polaris-muted text-sm mb-8">The complete weekly schedule across all four meal blocks</p>
+    {% for section in weeks.0.sections %}
+    {% cycle 'card-appetite-yellow' 'card-appetite-green' as appetite silent %}
+    <div class="polaris-card overflow-x-auto mb-4 {{ appetite }}">
+        <div class="px-4 py-2 font-display font-bold text-xs {% if appetite == 'card-appetite-yellow' %}text-hunger-yellow{% else %}text-hunger-green{% endif %}">{{ section.name }}</div>
+        <table class="polaris-table w-full text-sm min-w-[640px]">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2 text-left font-semibold sticky left-0 z-10" style="background:var(--background);box-shadow:4px 0 6px -4px rgba(15,17,21,.12)">Item</th>
+                    {% for day in days %}
+                    <th class="px-4 py-2 text-left font-semibold">{{ day }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in section.rows %}
+                <tr>
+                    <td class="px-4 py-2 font-semibold sticky left-0 z-10" style="background:var(--background);box-shadow:4px 0 6px -4px rgba(15,17,21,.12)">{{ row.category }}</td>
+                    {% for item in row.items %}
+                    <td class="px-4 py-2">{{ item }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endfor %}
+</section>
+
+{% endif %}
+{% comment %} {% endblock %} {% endcomment %}
+<!-- Leadership Banner Section -->
+{% comment %} <section class="mb-14">
+    <div class="text-center mb-8">
+        <span class="pill mb-3 inline-block">👥 Our Leaders</span>
+        <h2 class="font-display text-3xl font-extrabold">Meet the Team Behind Mess</h2>
+    </div>
+
+    <!-- Cards: 1 column on mobile, 2 on tablet, 4 on desktop -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+        {% for person in leadership %}
+        <div class="polaris-card overflow-hidden flex flex-col polaris-card-hover">
+            <!-- Banner image (16:9) -->
+            <div class="relative h-52 sm:h-56 overflow-hidden" style="background:rgba(69,52,125,.12)">
+                <img src="{% static person.photo %}" alt="{{ person.name }}"
+                     class="w-full h-full object-cover"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="hidden items-center justify-center w-full h-full text-4xl" style="display:none">🎓</div>
+                <!-- Overlay gradient at the bottom -->
+                <div class="absolute inset-x-0 bottom-0 h-16" style="background:linear-gradient(to top, rgba(15,17,21,.55), transparent)"></div>
+                <span class="absolute bottom-3 left-4 text-white text-xs font-bold tracking-widest uppercase">{{ person.role }}</span>
+            </div>
+            <!-- Text below image -->
+            <div class="p-5 text-left flex-1 flex flex-col">
+                <h3 class="font-display font-bold text-lg">{{ person.name }}</h3>
+                <p class="serif text-sm polaris-muted italic leading-relaxed mt-2 flex-1">{{ person.quote }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section> {% endcomment %}
+
+{% endblock %}

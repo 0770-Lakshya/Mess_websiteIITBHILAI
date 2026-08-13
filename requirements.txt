@@ -1,0 +1,9 @@
+Django==4.2
+redis==5.0
+django-redis
+python-decouple
+whitenoise
+gunicorn
+pandas
+openpyxl
+

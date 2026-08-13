@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="space-y-6">
+    <div class="text-center">
+        <h2 class="font-display text-3xl font-extrabold">Today's Menu</h2>
+        <p class="polaris-muted text-sm mt-1">Full day schedule from the official IIT Bhilai mess sheet.</p>
+    </div>
+
+    {% if menu_error %}
+    <div class="polaris-card p-6 text-left" style="border-color:rgba(212,24,61,.4)">
+        <p class="text-sm polaris-muted">{{ menu_error }}</p>
+    </div>
+    {% endif %}
+
+    {% if days_data %}
+    <!-- Day selector -->
+    <div class="flex gap-2 flex-wrap justify-center" id="dayTabs">
+        {% for d in days_data %}
+        <button data-day="{{ d.day }}" class="day-tab px-4 py-2 text-sm font-semibold rounded-lg {% if d.day == today %}day-active{% endif %}" style="{% if d.day == today %}background:var(--primary);color:var(--primary-foreground){% else %}background:var(--secondary);color:var(--secondary-foreground){% endif %}">
+            {{ d.day }}
+        </button>
+        {% endfor %}
+    </div>
+
+    {% for d in days_data %}
+    <div class="day-panel {% if d.day != today %}hidden{% endif %}" id="panel-{{ d.day }}">
+        {% for section in d.sections %}
+        {% cycle 'card-appetite-yellow' 'card-appetite-green' as appetite silent %}
+        <div class="polaris-card p-6 mb-4 {{ appetite }}">
+            <h3 class="font-display font-bold mb-4 {% if appetite == 'card-appetite-yellow' %}text-hunger-yellow{% else %}text-hunger-green{% endif %}">{{ section.name }}</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+                {% for row in section.rows %}
+                <div class="flex gap-2 py-1 border-b" style="border-color:var(--border)">
+                    <span class="min-w-[5.5rem] flex-none polaris-muted text-xs font-semibold pt-0.5">{{ row.category }}</span>
+                    <span>{{ row.item }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<script>
+    var tabs = document.querySelectorAll('.day-tab');
+    tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+            var day = tab.dataset.day;
+            document.querySelectorAll('.day-panel').forEach(function (p) { p.classList.add('hidden'); });
+            document.getElementById('panel-' + day).classList.remove('hidden');
+            tabs.forEach(function (t) {
+                t.style.background = 'var(--secondary)';
+                t.style.color = 'var(--secondary-foreground)';
+            });
+            tab.style.background = 'var(--primary)';
+            tab.style.color = 'var(--primary-foreground)';
+        });
+    });
+</script>
+{% endblock %}
